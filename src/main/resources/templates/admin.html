@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin panel</title>
+  <link rel="shortcut icon" type="image/png"
+        href="https://avatars.mds.yandex.net/i?id=bc97ef2f6266bf31f3060082b2ab57cf-7000993-images-thumbs&n=13&exp=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    .st1 {
+      height: 100vh;
+      background-color: #f6f9f3;
+    }
+
+    .st2 {
+      margin-left: -1rem;
+      margin-right: -1rem;
+    }
+
+    .st3 {
+      height: 72vh;
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-11 p-2 bg-dark text-white">
+      <t class="font-weight-normal" id="role">with roles: ADMIN</t>
+    </div>
+    <form class="col-1 p-2 bg-dark text-right" th:method="POST" th:action="@{/logout}">
+      <button class="btn btn-dark text-white-50 btn-sm mr-1" type="submit">Logout</button>
+    </form>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <p></p>
+      <div class="nav flex-column nav-pills st2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+           role="tab" aria-controls="v-pills-home" aria-selected="true">Admin</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+           role="tab" aria-controls="v-pills-profile" aria-selected="false">User</a>
+      </div>
+    </div>
+
+    <div class="col-10 st1">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+             aria-labelledby="v-pills-home-tab">
+          <p></p>
+          <h1 style="margin-left: 15px">Admin panel</h1>
+          <nav>
+            <div class="nav nav-tabs ml-1" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                 role="tab"
+                 aria-controls="nav-home" aria-selected="true">Users table</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                 role="tab"
+                 aria-controls="nav-profile" aria-selected="false">New User</a>
+            </div>
+          </nav>
+
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                 aria-labelledby="nav-home-tab">
+              <h5 class="col-12 p-2 mb-0 border ml-1">All users</h5>
+              <div class="border col-12 bg-white ml-1">
+                <table class="table table-striped">
+                  <p></p>
+                  <thead id="headAll"></thead>
+                  <tbody id="dataAll"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <h5 class="col-12 p-2 mb-0 ml-1 border">Add new user</h5>
+              <div class="col-12 st3 ml-1 border">
+                <div class="container-fluid" style="width: 30%">
+                  <br>
+                  <form class="formNew">
+                    <div class="text-center">
+                      <label for="firstname" class="font-weight-bold  mb-0">First name</label>
+                      <input type="text" id="firstname" name="firstName" class="form-control"
+                             placeholder="First name" required autofocus>
+                    </div>
+                    <div class="text-center mt-3">
+                      <label for="lastname" class="font-weight-bold  mb-0">Last name</label>
+                      <input type="text" id="lastname" name="lastName" class="form-control"
+                             placeholder="Last name" required>
+                    </div>
+
+                    <div class="text-center mt-3">
+                      <label for="password" class="font-weight-bold  mb-0">Password</label>
+                      <input type="password" id="password" name="password" class="form-control"
+                             placeholder="Password" required>
+                    </div>
+                    <div class="form-group text-center mt-3">
+                      <label for="roles" class="font-weight-bold  mb-0">Role</label>
+                      <select multiple class="form-control" name="role" id="roles"
+                              style="height: 50px;">
+                        <option>ADMIN</option>
+                        <option selected>USER</option>
+                      </select>
+                    </div>
+                    <div class="text-center mt-3">
+                      <button class="btn btn-success" type="submit">Add new user</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <p></p>
+          <h1 style="margin-left: 20px">User information-page</h1>
+          <h5 class="col-12 p-2 mb-0 border border-bottom-0 ml-1">About user</h5>
+          <div class="border col-12 bg-white ml-1">
+            <table class="table table-striped">
+              <p></p>
+              <thead id="head"></thead>
+              <tbody id="data"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Edit user</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="formEdit">
+        <div class="container-fluid w-50">
+          <div class="text-center mt-3">
+            <label for="id1" class="font-weight-bold mb-0">ID</label>
+            <input type="text" id="id1" name="id" class="form-control" readonly>
+          </div>
+          <div class="text-center mt-3">
+            <label for="firstname" class="font-weight-bold mb-0">First name</label>
+            <input type="text" id="firstname1" name="firstName" class="form-control" required autofocus>
+          </div>
+          <div class="text-center mt-3">
+            <label for="lastname" class="font-weight-bold mb-0">Last name</label>
+            <input type="text" id="lastname1" name="lastName" class="form-control" required>
+          </div>
+
+
+          <div class="text-center mt-3">
+            <label for="password" class="font-weight-bold mb-0">Password</label>
+            <input type="password" id="password1" name="password" class="form-control">
+          </div>
+          <div class="form-group text-center mt-3 ">
+            <label for="roles1" class="font-weight-bold mb-0">Role</label>
+            <select multiple class="form-control" name="role" id="roles1"
+                    style="height: 50px;">
+              <option>ADMIN</option>
+              <option>USER</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="eBC">Close</button>
+          <button type="submit" class="btn btn-info btn-sm">Edit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Delete user</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&#215;</span>
+        </button>
+      </div>
+
+      <form class="formDelete">
+        <div class="container-fluid" style="width: 50%">
+          <div class="text-center mt-3">
+            <label for="id2" class="font-weight-bold mb-0">ID</label>
+            <input type="text" id="id2" name="id" class="form-control" readonly>
+          </div>
+          <div class="text-center mt-3">
+            <label for="firstname" class="font-weight-bold mb-0">First name</label>
+            <input type="text" id="firstname2" name="firstName" class="form-control" readonly>
+          </div>
+          <div class="text-center mt-3">
+            <label for="lastname" class="font-weight-bold mb-0">Last name</label>
+            <input type="text" id="lastname2" name="lastName" class="form-control" readonly>
+          </div>
+
+
+          <div class="form-group text-center mt-3">
+            <label for="role2" class="font-weight-bold mb-0">Role</label>
+            <select multiple class="form-control" name="role" id="role2"
+                    style="height: 50px;" disabled="disabled">
+              <option>ADMIN</option>
+              <option>USER</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="dBC">Close</button>
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script src="../static/js/admin.js" th:src="@{js/admin.js}"></script>
+<script src="../static/js/modal.js" th:src="@{js/modal.js}"></script>
+
+</body>
+</html>
